@@ -3,98 +3,150 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Recupera Crédito — Análise</title>
+  <title>Recupera Crédito — Análise gratuita</title>
+  <meta name="description" content="Recuperamos seu crédito com agilidade e atendimento 100% humano. Exclusivo para clientes Santander (Cartão Físico e PJ)."/>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{--brand:#e11d48;--brand2:#f97316}
-    .brand-grad{background:linear-gradient(135deg,var(--brand),var(--brand2))}
+    :root{
+      --brand:#e11d48; /* rosa */
+      --brand2:#f97316; /* laranja */
+      --ink:#e2e8f0;    /* texto claro */
+      --muted:#94a3b8; /* texto secundário */
+      --bg:#0b1323;    /* azul-escuro */
+      --card:#0f1a2b;  /* cards */
+    }
+    body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+    .grad{background:linear-gradient(135deg,var(--brand),var(--brand2))}
+    .pill{border-radius:9999px}
+    .shadow-soft{box-shadow:0 10px 40px rgba(0,0,0,.35)}
+    .hero-grad:before{
+      content:"";position:absolute;inset:-30% -10% auto -10%;
+      height:44rem;border-bottom-left-radius:80px;
+      background:radial-gradient(80% 60% at 30% 10%,rgba(225,29,72,.25),transparent 60%),
+                 radial-gradient(70% 60% at 95% 10%,rgba(249,115,22,.25),transparent 60%);
+      filter:blur(20px);z-index:0
+    }
+    .badge{font-size:.75rem;font-weight:700;padding:.25rem .55rem;border-radius:.5rem;background:#132036;color:#f1f5f9;border:1px solid #1e2b40}
+    .muted{color:var(--muted)}
+    .card{background:var(--card);border:1px solid #1e293b}
+    .brand{color:var(--brand)}
+    .brand-underline{text-decoration:underline;text-decoration-thickness:4px;text-underline-offset:6px}
+    .nav a{color:#cbd5e1}.nav a:hover{color:#fff}
   </style>
 </head>
-<body class="bg-slate-950 text-white">
-  <header class="sticky top-0 z-10 bg-slate-950/70 backdrop-blur border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+<body>
+  <!-- NAV -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-black/30 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <span class="inline-block w-8 h-8 rounded-lg brand-grad"></span>
-        <span class="font-black tracking-tight">RECUPERA <span class="text-rose-500">CRÉDITO</span></span>
+        <span class="h-8 w-8 rounded-lg grad block"></span>
+        <div class="font-black tracking-tight">RECUPERA <span class="brand">CRÉDITO</span></div>
       </div>
-      <nav class="flex items-center gap-4 text-sm text-slate-300">
-        <a href="#como" class="hover:text-white">Como funciona</a>
-        <a href="#cta" class="hover:text-white">Começar</a>
-        <a href="/admin" class="px-3 py-1 rounded border border-white/20 hover:bg-white/10">Admin</a>
+      <nav class="nav hidden md:flex items-center gap-6 text-sm">
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#inicio">Começar</a>
+        <a href="/admin" class="px-3 py-1.5 pill border border-white/10 hover:border-white/30">Admin</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="max-w-6xl mx-auto px-4 py-16 grid lg:grid-cols-2 gap-10 items-center">
+  <!-- HERO -->
+  <section id="inicio" class="relative hero-grad">
+    <div class="relative z-10 max-w-7xl mx-auto px-4 py-14 grid lg:grid-cols-2 gap-10 items-center">
       <div>
-        <div class="inline-block text-xs tracking-widest text-slate-400 mb-2">ESPECIALISTAS EM SANTANDER</div>
-        <h1 class="text-4xl sm:text-5xl font-extrabold leading-tight">
-          Recuperamos seu <span class="text-rose-500">crédito</span> com
-          <span class="text-orange-400">agilidade</span> e atendimento 100% humano.
+        <span class="badge">ESPECIALISTAS EM SANTANDER</span>
+        <h1 class="mt-4 text-4xl md:text-5xl font-black leading-tight">
+          Recuperamos seu <span class="brand-underline">crédito</span>
+          com <span class="brand-underline">agilidade</span><br/>
+          e atendimento 100% humano.
         </h1>
-        <p class="text-slate-300 mt-4 max-w-xl">
+        <p class="mt-4 muted max-w-xl">
           PF e PJ com até 60 dias de atraso. Sem adiantamento — honorários só no sucesso.
+          Exclusivo para clientes Santander (Cartão Físico e PJ).
         </p>
-        <div id="cta" class="mt-6 flex gap-3">
-          <a href="#form" class="px-4 py-3 rounded-lg brand-grad font-bold shadow">Iniciar análise gratuita</a>
-          <a href="#como" class="px-4 py-3 rounded-lg border border-white/20">Entender o processo</a>
-        </div>
-        <div class="grid grid-cols-3 gap-6 mt-8 text-center text-slate-300">
-          <div><div class="text-2xl font-black">48h</div><div class="text-xs">Retorno médio</div></div>
-          <div><div class="text-2xl font-black">0%</div><div class="text-xs">Adiantamento</div></div>
-          <div><div class="text-2xl font-black">100%</div><div class="text-xs">Atendimento humano</div></div>
-        </div>
-      </div>
-      <div class="relative">
-        <div class="rounded-2xl border border-white/10 bg-white/5 p-6">
-          <div class="text-sm text-slate-300 mb-2">Solicite sua análise</div>
-          <form id="form" class="grid gap-3">
-            <select name="tipo" class="bg-slate-900 border border-white/10 rounded px-3 py-2">
-              <option>PF</option>
-              <option>PJ</option>
-            </select>
-            <input name="nome" placeholder="Seu nome" class="bg-slate-900 border border-white/10 rounded px-3 py-2"/>
-            <input name="whatsapp" placeholder="WhatsApp" class="bg-slate-900 border border-white/10 rounded px-3 py-2"/>
-            <input name="cidade" placeholder="Cidade/UF" class="bg-slate-900 border border-white/10 rounded px-3 py-2"/>
-            <input name="tempo" placeholder="Tempo de atraso" class="bg-slate-900 border border-white/10 rounded px-3 py-2"/>
-            <input name="limite" placeholder="Limite aproximado" class="bg-slate-900 border border-white/10 rounded px-3 py-2" type="number" step="0.01"/>
-            <button class="brand-grad px-4 py-2 rounded font-bold">Enviar</button>
-          </form>
-          <div id="ok" class="hidden mt-3 text-emerald-400 text-sm">Enviado! Em breve retornaremos.</div>
-        </div>
-      </div>
-    </section>
 
-    <section id="como" class="max-w-6xl mx-auto px-4 py-12">
-      <h2 class="text-2xl font-bold mb-4">Como funciona</h2>
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10">1. Análise gratuita</div>
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10">2. Proposta e cronograma</div>
-        <div class="p-4 rounded-xl bg-white/5 border border-white/10">3. Execução e resultado</div>
-      </div>
-      <p class="text-slate-400 text-sm mt-4">
-        Exclusivo para clientes Santander (Cartão Físico e PJ).
-      </p>
-    </section>
-  </main>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#form" class="px-5 py-3 pill grad text-white font-bold shadow-soft">Iniciar análise gratuita</a>
+          <a href="#como-funciona" class="px-5 py-3 pill border border-white/10 hover:border-white/30">Entender o processo</a>
+        </div>
 
-  <footer class="border-t border-white/10 py-8 text-center text-slate-400 text-sm">
-    © Recupera Crédito — todos os direitos reservados.
-  </footer>
+        <div class="mt-8 grid grid-cols-3 gap-4 max-w-lg">
+          <div class="card rounded-xl p-4 text-center">
+            <div class="text-3xl font-extrabold">48h</div>
+            <div class="muted text-xs">Retorno médio</div>
+          </div>
+          <div class="card rounded-xl p-4 text-center">
+            <div class="text-3xl font-extrabold">0%</div>
+            <div class="muted text-xs">Adiantamento</div>
+          </div>
+          <div class="card rounded-xl p-4 text-center">
+            <div class="text-3xl font-extrabold">100%</div>
+            <div class="muted text-xs">Atendimento humano</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div class="card rounded-2xl p-5 shadow-soft" id="form">
+        <div class="text-sm muted mb-2">Solicite sua análise</div>
+        <form id="lead" class="space-y-3">
+          <select name="tipo" class="w-full bg-transparent border border-white/10 rounded px-3 py-2" required>
+            <option value="PF">PF</option>
+            <option value="PJ">PJ</option>
+          </select>
+          <input name="nome" placeholder="Seu nome" class="w-full bg-transparent border border-white/10 rounded px-3 py-2" required/>
+          <input name="whatsapp" placeholder="WhatsApp" class="w-full bg-transparent border border-white/10 rounded px-3 py-2" required/>
+          <input name="cidade" placeholder="Cidade/UF" class="w-full bg-transparent border border-white/10 rounded px-3 py-2"/>
+          <input name="tempo" placeholder="Tempo de atraso" class="w-full bg-transparent border border-white/10 rounded px-3 py-2"/>
+          <input name="limite" placeholder="Limite aproximado" class="w-full bg-transparent border border-white/10 rounded px-3 py-2"/>
+          <button class="w-full grad pill text-white font-bold px-4 py-3">Enviar</button>
+          <div class="text-xs muted">Exclusivo para clientes Santander (Cartão Físico e PJ).</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" class="max-w-7xl mx-auto px-4 py-12">
+    <h2 class="text-2xl font-extrabold mb-4">Como funciona</h2>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="card rounded-xl p-4">
+        <div class="font-bold mb-1">1. Análise gratuita</div>
+        <div class="muted text-sm">Coletamos seus dados e entendemos o caso.</div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="font-bold mb-1">2. Proposta e cronograma</div>
+        <div class="muted text-sm">Você recebe um plano claro de recuperação de crédito.</div>
+      </div>
+      <div class="card rounded-xl p-4">
+        <div class="font-bold mb-1">3. Execução e resultado</div>
+        <div class="muted text-sm">Cuidamos de tudo e mantemos você informado.</div>
+      </div>
+    </div>
+    <div class="muted text-xs mt-4">Exclusivo para clientes Santander (Cartão Físico e PJ).</div>
+    <footer class="mt-10 muted text-xs">© Recupera Crédito — todos os direitos reservados.</footer>
+  </section>
+
+  <!-- Toasts -->
+  <div id="toasts" class="fixed top-4 right-4 z-50 space-y-2"></div>
 
   <script>
-    document.getElementById('form').addEventListener('submit', async (e)=>{
+    function toast(msg, ok=true){
+      const el = document.createElement('div');
+      el.className = 'px-3 py-2 rounded-lg text-sm text-white shadow-soft ' + (ok?'bg-emerald-600':'bg-rose-600');
+      el.textContent = msg; document.getElementById('toasts').appendChild(el);
+      setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(-6px)';},1700);
+      setTimeout(()=>el.remove(), 2200);
+    }
+
+    document.getElementById('lead').addEventListener('submit', async (e)=>{
       e.preventDefault();
-      const d = Object.fromEntries(new FormData(e.target).entries());
-      d.created_at = new Date().toISOString();
-      d.updated_at = d.created_at;
+      const data = Object.fromEntries(new FormData(e.target).entries());
       try{
-        await fetch('/api/leads', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(d)});
-        e.target.reset();
-        document.getElementById('ok').classList.remove('hidden');
-        setTimeout(()=>document.getElementById('ok').classList.add('hidden'), 2500);
-      }catch(_){ alert('Falha ao enviar.'); }
+        const r = await fetch('/api/leads',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+        if(r.ok){ e.target.reset(); toast('Recebemos sua análise. Em breve entraremos em contato!'); }
+        else toast('Não foi possível enviar. Tente novamente.', false);
+      }catch(_){ toast('Erro de conexão. Tente novamente.', false); }
     });
   </script>
 </body>
