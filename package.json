@@ -10,8 +10,5 @@
     "better-sqlite3": "^9.4.0",
     "express": "^4.19.2",
     "express-session": "^1.17.3"
-  },
-  "engines": {
-    "node": ">=18"
   }
 }
