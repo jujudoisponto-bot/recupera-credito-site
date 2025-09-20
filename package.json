@@ -1,13 +1,16 @@
 {
   "name": "recupera-credito-site",
   "version": "1.0.0",
-  "description": "Site + Admin com Node + SQLite (Render)",
+  "description": "Site e API simples (Express + SQLite) para captação de leads PF/PJ.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
-    "better-sqlite3": "^9.4.0",
+    "better-sqlite3": "^9.4.3",
     "express": "^4.19.2",
     "express-session": "^1.17.3"
   }
