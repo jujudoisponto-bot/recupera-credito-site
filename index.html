@@ -4,7 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>RECUPERA CRÉDITO — PF & PJ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -17,22 +18,30 @@
   </style>
 </head>
 <body>
-  <!-- NAV -->
+
+  <!-- HEADER -->
   <header class="sticky top-0 z-50 bg-[#0b1020]/90 backdrop-blur border-b border-white/10">
     <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
+      <!-- Logo -->
       <div class="flex items-center gap-2">
-        <!-- cartão girando (no lugar do ponto vermelho) -->
         <div class="relative h-6 w-10">
           <div id="tiny-card" class="absolute inset-0 rounded-md glass border border-white/20 animate-[spin_6s_linear_infinite]"></div>
         </div>
-        <span class="font-extrabold tracking-wide"><span class="text-white/80">RECUPERA</span> <span class="text-[var(--brand)]">CRÉDITO</span></span>
+        <span class="font-extrabold tracking-wide">
+          <span class="text-white/80">RECUPERA</span> <span class="text-[var(--brand)]">CRÉDITO</span>
+        </span>
       </div>
+      <!-- Menu -->
       <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
         <a href="#analise" class="hover:text-white">Análise</a>
         <a href="#como-funciona" class="hover:text-white">Como funciona</a>
         <a href="#relatos" class="hover:text-white">Relatos</a>
       </nav>
-      <a href="#analise" class="pill bg-[var(--brand)] text-white font-bold rounded-full px-4 py-2 text-sm">Começar agora</a>
+      <!-- Botões -->
+      <div class="flex items-center gap-2">
+        <a href="/admin.html" class="hidden sm:inline-flex text-xs px-3 py-1.5 rounded border border-white/20 text-slate-200 hover:bg-white/5">Admin</a>
+        <a href="#analise" class="pill bg-[var(--brand)] text-white font-bold rounded-full px-4 py-2 text-sm">Começar agora</a>
+      </div>
     </div>
   </header>
 
