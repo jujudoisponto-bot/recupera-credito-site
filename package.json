@@ -1,4 +1,17 @@
 {
   "name": "recupera-credito-site",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "Site + Admin com Node + SQLite (Render)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.0",
+    "express": "^4.19.2",
+    "express-session": "^1.17.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }
