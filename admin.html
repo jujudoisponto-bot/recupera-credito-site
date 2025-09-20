@@ -6,70 +6,41 @@
   <title>Admin — Recupera Crédito</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    .badge{font-size:.75rem;padding:.15rem .5rem;border-radius:.5rem;font-weight:700}
-    .b-novo{background:#eef2ff;color:#4338ca}
-    .b-contato{background:#fff7ed;color:#c2410c}
-    .b-qualificado{background:#ecfeff;color:#155e75}
-    .b-fechado{background:#ecfdf5;color:#065f46}
-    .b-descartado{background:#fef2f2;color:#991b1b}
-    .row-new{animation: flash 1.2s ease-in-out 1}
-    @keyframes flash{0%{background:#fff7ed}100%{background:transparent}}
-    .btn{transition:transform .05s ease}
-    .btn:active{transform:scale(.98)}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b1323;color:#e2e8f0}
+    .grad{background:linear-gradient(135deg,#e11d48,#f97316)}
   </style>
 </head>
-<body class="bg-slate-50">
-  <div class="max-w-7xl mx-auto p-4">
-    <div class="flex items-center justify-between gap-3 mb-4">
-      <h1 class="text-xl sm:text-2xl font-extrabold">Painel — Recupera Crédito</h1>
-      <div class="flex items-center gap-2">
-        <button id="btn-export" class="btn text-sm px-3 py-1.5 border rounded bg-white">Exportar CSV</button>
-        <button id="btn-sair" class="btn text-sm px-3 py-1.5 border rounded">Sair</button>
-      </div>
-    </div>
+<body class="min-h-screen">
 
-    <!-- LOGIN -->
-    <div id="login" class="bg-white rounded-xl border p-4 max-w-md">
-      <h2 class="font-bold mb-2">Acesso restrito</h2>
+  <!-- Cabeçalho -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-black/30 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="h-8 w-8 rounded-lg grad block"></span>
+        <div class="font-black tracking-tight">RECUPERA <span class="text-rose-500">CRÉDITO</span> — Admin</div>
+      </div>
+      <button id="btn-sair" class="hidden text-sm px-3 py-1 border rounded hover:bg-white/10">Sair</button>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto p-4">
+    <!-- Login -->
+    <div id="login" class="bg-white/5 rounded-xl border border-white/10 p-6 max-w-md mx-auto mt-10">
+      <h2 class="font-bold mb-2 text-lg text-center">Acesso restrito</h2>
       <form id="form-login" class="space-y-3">
-        <input name="user" placeholder="Usuário" class="w-full border rounded px-3 py-2" value="ADMIN">
-        <input name="pass" placeholder="Senha" class="w-full border rounded px-3 py-2" type="password" value="recupera123">
-        <button class="w-full bg-rose-600 hover:bg-rose-700 text-white rounded px-3 py-2 font-bold">Entrar</button>
+        <input name="user" placeholder="Usuário" class="w-full bg-transparent border border-white/20 rounded px-3 py-2 text-white" value="ADMIN">
+        <input name="pass" placeholder="Senha" class="w-full bg-transparent border border-white/20 rounded px-3 py-2 text-white" type="password" value="recupera123">
+        <button class="w-full grad text-white rounded px-3 py-2 font-bold">Entrar</button>
       </form>
-      <p class="text-xs text-slate-500 mt-2">Login: <b>ADMIN</b> — Senha: <b>recupera123</b></p>
+      <p class="text-xs text-slate-400 mt-2 text-center">Login: <b>ADMIN</b> — Senha: <b>recupera123</b></p>
     </div>
 
-    <!-- APP -->
-    <div id="app" class="hidden space-y-3">
-      <!-- filtros -->
-      <div class="bg-white border rounded-xl p-3 grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
-        <input id="q" class="border rounded px-3 py-2" placeholder="Buscar por nome, WhatsApp ou cidade…">
-        <select id="f-tipo" class="border rounded px-3 py-2">
-          <option value="">Tipo (todos)</option>
-          <option>PF</option><option>PJ</option>
-        </select>
-        <select id="f-status" class="border rounded px-3 py-2">
-          <option value="">Status (todos)</option>
-          <option>Novo</option><option>Em contato</option>
-          <option>Qualificado</option><option>Fechado</option>
-          <option>Descartado</option>
-        </select>
-        <select id="sort" class="border rounded px-3 py-2">
-          <option value="created_at:desc">Mais recentes</option>
-          <option value="created_at:asc">Mais antigos</option>
-          <option value="nome:asc">Nome (A→Z)</option>
-          <option value="nome:desc">Nome (Z→A)</option>
-        </select>
-        <div class="flex items-center gap-2">
-          <button id="btn-refresh" class="btn w-full bg-slate-900 hover:bg-black text-white rounded px-3 py-2">Atualizar</button>
-        </div>
-      </div>
-
-      <!-- tabela -->
-      <div class="overflow-x-auto bg-white border rounded-xl">
+    <!-- App -->
+    <div id="app" class="hidden mt-8">
+      <h2 class="text-xl font-bold mb-3">Leads recebidos</h2>
+      <div class="overflow-x-auto bg-white/5 border border-white/10 rounded-xl">
         <table class="w-full text-sm">
-          <thead class="bg-slate-100">
+          <thead class="bg-black/30 text-slate-300">
             <tr>
               <th class="text-left p-2">Quando</th>
               <th class="text-left p-2">Tipo</th>
@@ -82,187 +53,80 @@
               <th class="text-left p-2">Ações</th>
             </tr>
           </thead>
-          <tbody id="tbody"></tbody>
+          <tbody id="tbody" class="text-slate-200"></tbody>
         </table>
-      </div>
-
-      <!-- rodapé -->
-      <div class="flex items-center justify-between text-xs text-slate-500">
-        <div>Atualiza a cada <b>10s</b> automaticamente quando o painel está aberto.</div>
-        <div id="count"></div>
       </div>
     </div>
   </div>
 
   <script>
-    // ====== CONFIG ======
-    const WPP = '5521983941778'; // <-- troque pelo seu número (DDI+DDD+numero)
-
-    // ====== ELEMENTOS ======
     const loginBox = document.getElementById('login');
-    const appBox   = document.getElementById('app');
-    const tbody    = document.getElementById('tbody');
-    const countLbl = document.getElementById('count');
-    const q = document.getElementById('q');
-    const fTipo = document.getElementById('f-tipo');
-    const fStatus = document.getElementById('f-status');
-    const sortSel = document.getElementById('sort');
+    const appBox = document.getElementById('app');
+    const btnSair = document.getElementById('btn-sair');
+    const tbody = document.getElementById('tbody');
+    const WPP = '55SEUNUMEROAQUI'; // troque pelo seu número real
 
-    // ====== HELPERS ======
-    const dt = s => new Date(s).toLocaleString('pt-BR');
-    const phone = s => (s||'').replace(/[^\d]/g,'');
-    const csv = rows => {
-      const keys = Object.keys(rows[0]||{});
-      const head = keys.join(',');
-      const body = rows.map(r=>keys.map(k=>JSON.stringify(r[k]??'')).join(',')).join('\n');
-      return head+'\n'+body;
-    };
-    const badge = (st) => {
-      const m = {
-        'Novo':'b-novo','Em contato':'b-contato','Qualificado':'b-qualificado','Fechado':'b-fechado','Descartado':'b-descartado'
-      };
-      return `<span class="badge ${m[st]||'b-novo'}">${st}</span>`;
-    };
+    function dt(s){ return new Date(s).toLocaleString('pt-BR'); }
 
-    // ====== ESTADO ======
-    let ALL = [];
-    let lastIds = new Set();
-
-    // ====== FUNÇÕES ======
-    function applyFilters(){
-      let rows = [...ALL];
-
-      // busca
-      const term = q.value.toLowerCase().trim();
-      if(term){
-        rows = rows.filter(r =>
-          (r.nome||'').toLowerCase().includes(term) ||
-          (r.whatsapp||'').toLowerCase().includes(term) ||
-          (r.cidade||'').toLowerCase().includes(term)
-        );
-      }
-      // filtros
-      if(fTipo.value) rows = rows.filter(r => r.tipo === fTipo.value);
-      if(fStatus.value) rows = rows.filter(r => r.status === fStatus.value);
-
-      // ordenação
-      const [k,dir] = sortSel.value.split(':');
-      rows.sort((a,b)=>{
-        const A = (a[k]||'').toString().toLowerCase();
-        const B = (b[k]||'').toString().toLowerCase();
-        if(A<B) return dir==='asc'?-1:1;
-        if(A>B) return dir==='asc'?1:-1;
-        return 0;
-      });
-
-      render(rows);
-    }
-
-    function render(rows){
-      countLbl.textContent = `${rows.length} registro(s)`;
-      tbody.innerHTML = rows.map(r=>{
-        const isNew = !lastIds.has(r.id);
-        return `
-        <tr class="border-t ${isNew?'row-new':''}">
-          <td class="p-2 whitespace-nowrap">${dt(r.created_at)}</td>
-          <td class="p-2">${r.tipo}</td>
-          <td class="p-2">${r.nome||'-'}</td>
-          <td class="p-2">
-            ${(r.whatsapp||'-')}
-            ${r.whatsapp?`<button data-copy="${r.whatsapp}" class="btn ml-2 text-xs px-2 py-1 border rounded">copiar</button>`:''}
-          </td>
-          <td class="p-2">${r.cidade||'-'}</td>
-          <td class="p-2">${r.tempo||'-'}</td>
-          <td class="p-2">${r.limite!=null?r.limite:'-'}</td>
-          <td class="p-2">
-            <select data-id="${r.id}" class="status border rounded px-2 py-1">
-              ${['Novo','Em contato','Qualificado','Fechado','Descartado'].map(s=>`<option ${s===r.status?'selected':''}>${s}</option>`).join('')}
-            </select>
-            <div class="mt-1">${badge(r.status||'Novo')}</div>
-          </td>
-          <td class="p-2">
-            ${r.whatsapp?`<a target="_blank" class="btn text-rose-700 underline" href="https://wa.me/${phone(WPP)}?text=${encodeURIComponent('Olá '+(r.nome||'')+', recebi sua análise da Recupera Crédito. Podemos falar agora?')}">WhatsApp</a>`:''}
-          </td>
-        </tr>`;
-      }).join('');
-      // atualiza conjunto de IDs vistos
-      lastIds = new Set(rows.map(r=>r.id));
-    }
-
-    async function fetchLeads(showNewFlash=true){
+    async function loadLeads(){
       const r = await fetch('/api/leads');
-      if(!r.ok){ loginBox.classList.remove('hidden'); appBox.classList.add('hidden'); return; }
-      const rows = await r.json();
-      const before = new Set(ALL.map(x=>x.id));
-      ALL = rows;
-      applyFilters();
-
-      // som sutil quando chegar lead novo
-      if(showNewFlash && rows.some(x=>!before.has(x.id))){
-        try{
-          const ctx = new (window.AudioContext||window.webkitAudioContext)();
-          const o = ctx.createOscillator(); const g = ctx.createGain();
-          o.type='triangle'; o.frequency.value=880; o.connect(g); g.connect(ctx.destination);
-          o.start(); g.gain.setValueAtTime(.06,ctx.currentTime); g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime+0.25);
-          setTimeout(()=>o.stop(),260);
-        }catch(e){}
+      if(!r.ok){
+        loginBox.classList.remove('hidden');
+        appBox.classList.add('hidden');
+        btnSair.classList.add('hidden');
+        return;
       }
+      const rows = await r.json();
+      tbody.innerHTML = rows.map(x=>`
+        <tr class="border-t border-white/10">
+          <td class="p-2">${dt(x.created_at)}</td>
+          <td class="p-2">${x.tipo}</td>
+          <td class="p-2">${x.nome||'-'}</td>
+          <td class="p-2">${x.whatsapp||'-'}</td>
+          <td class="p-2">${x.cidade||'-'}</td>
+          <td class="p-2">${x.tempo||'-'}</td>
+          <td class="p-2">${x.limite||'-'}</td>
+          <td class="p-2">
+            <select data-id="${x.id}" class="status bg-transparent border border-white/20 rounded px-2 py-1 text-slate-200">
+              ${['Novo','Em contato','Qualificado','Fechado','Descartado']
+                .map(s=>`<option ${s===x.status?'selected':''}>${s}</option>`).join('')}
+            </select>
+          </td>
+          <td class="p-2">
+            <a target="_blank" class="text-rose-400 underline" href="https://wa.me/${WPP}?text=${encodeURIComponent('Olá '+(x.nome||'')+', recebi sua análise da Recupera Crédito. Podemos falar agora?')}">WhatsApp</a>
+          </td>
+        </tr>
+      `).join('');
     }
 
-    async function login(d){
-      const r = await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
-      if(r.ok){ loginBox.classList.add('hidden'); appBox.classList.remove('hidden'); await fetchLeads(false); loop(); }
-      else alert('Login inválido');
-    }
-
-    // ====== EVENTOS ======
-    document.getElementById('form-login').addEventListener('submit', e=>{
+    document.getElementById('form-login').addEventListener('submit', async e=>{
       e.preventDefault();
       const d = Object.fromEntries(new FormData(e.target).entries());
-      login(d);
-    });
-    document.getElementById('btn-sair').addEventListener('click', async ()=>{
-      await fetch('/logout',{method:'POST'}); appBox.classList.add('hidden'); loginBox.classList.remove('hidden');
-      clearInterval(poller);
-    });
-    document.getElementById('btn-refresh').addEventListener('click', ()=> fetchLeads(false));
-    document.getElementById('btn-export').addEventListener('click', ()=>{
-      if(!ALL.length) return alert('Sem dados.');
-      const blob = new Blob([csv(ALL)], {type:'text/csv;charset=utf-8;'});
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'leads.csv'; a.click();
+      const r = await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+      if(r.ok){
+        loginBox.classList.add('hidden');
+        appBox.classList.remove('hidden');
+        btnSair.classList.remove('hidden');
+        loadLeads();
+      } else alert('Login inválido');
     });
 
-    // filtros em tempo real
-    [q,fTipo,fStatus,sortSel].forEach(el=> el.addEventListener('input', applyFilters));
+    btnSair.addEventListener('click', async ()=>{
+      await fetch('/logout',{method:'POST'});
+      appBox.classList.add('hidden');
+      loginBox.classList.remove('hidden');
+      btnSair.classList.add('hidden');
+    });
 
-    // mudar status / copiar número
     document.addEventListener('change', async e=>{
       if(e.target.classList.contains('status')){
-        const id = e.target.dataset.id, status = e.target.value;
+        const id = e.target.dataset.id;
+        const status = e.target.value;
         await fetch('/api/leads/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});
-        // atualizar badge local
-        const row = ALL.find(x=>x.id===id); if(row){ row.status = status; applyFilters(); }
-      }
-    });
-    document.addEventListener('click', e=>{
-      const btn = e.target.closest('[data-copy]');
-      if(btn){
-        const t = btn.getAttribute('data-copy');
-        navigator.clipboard.writeText(t);
-        btn.textContent = 'copiado!';
-        setTimeout(()=>btn.textContent='copiar', 900);
       }
     });
 
-    // auto refresh
-    let poller = null;
-    function loop(){
-      clearInterval(poller);
-      poller = setInterval(fetchLeads, 10000); // 10s
-    }
-
-    // tenta abrir direto se já logado
-    fetchLeads(false);
+    loadLeads();
   </script>
 </body>
 </html>
