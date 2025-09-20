@@ -49,47 +49,11 @@
     </div>
   </div>
 
-  <!-- Rodapé -->
-  <footer class="mt-10 border-t border-slate-200/70 bg-white">
-    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-600">
-      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-        <div class="space-y-1">
-          <div class="font-extrabold tracking-tight text-slate-900">
-            RECUPERA <span class="text-rose-600">CRÉDITO</span>
-          </div>
-          <p class="text-xs md:text-sm">
-            Exclusivo para clientes Santander — Cartão Físico e PJ. Atendimento 100% humano.
-          </p>
-          <p class="text-xs text-slate-500">
-            LGPD: dados tratados com finalidade específica, mínima necessidade e segurança. Somente cadastros com informações reais serão processados.
-          </p>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-3">
-          <a href="https://wa.me/5521983941778" target="_blank"
-             class="inline-flex items-center gap-2 px-3 py-2 rounded border hover:bg-slate-50">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="text-emerald-600"><path d="M20.52 3.48A11.86 11.86 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.51 5.8L0 24l6.35-1.66A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.77.99 1.01-3.67-.23-.38A9.96 9.96 0 1 1 12 22zm5.54-7.41c-.3-.15-1.78-.88-2.06-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.95 1.18-.18.2-.35.23-.65.08-.3-.15-1.25-.46-2.38-1.48-.88-.78-1.47-1.74-1.65-2.04-.18-.3-.02-.47.13-.62.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.5-.17 0-.38-.02-.58-.02-.2 0-.53.08-.8.38-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.17 4.56.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.09 1.78-.73 2.03-1.44.25-.71.25-1.31.17-1.44-.08-.13-.27-.2-.57-.35z"/></svg>
-            Suporte no WhatsApp
-          </a>
-          <a href="#" class="text-slate-600 hover:underline">Política de Privacidade</a>
-          <a href="#" class="text-slate-600 hover:underline">Termos de Uso</a>
-        </div>
-      </div>
-
-      <div class="mt-4 text-xs text-slate-500">
-        © <span id="year"></span> Recupera Crédito. Todos os direitos reservados.
-      </div>
-    </div>
-  </footer>
-
   <script>
     const loginBox = document.getElementById('login');
     const appBox = document.getElementById('app');
     const tbody = document.getElementById('tbody');
     const WPP = '5521983941778'; // troque pelo seu número
-
-    // ano automático no rodapé
-    document.getElementById('year').textContent = new Date().getFullYear();
 
     function dt(s){ return new Date(s).toLocaleString('pt-BR'); }
 
