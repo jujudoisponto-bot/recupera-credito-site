@@ -3,88 +3,144 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Recupera Crédito — Análise gratuita</title>
+  <title>Admin — Recupera Crédito</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b1323;color:#f1f5f9}
-    .grad{background:linear-gradient(135deg,#e11d48,#f97316)}
-  </style>
+  <style>body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}</style>
 </head>
-<body>
+<body class="bg-slate-50">
+  <div class="max-w-6xl mx-auto p-4">
+    <h1 class="text-2xl font-extrabold mb-4">Painel — Recupera Crédito</h1>
 
-  <!-- Cabeçalho fixo -->
-  <header class="sticky top-0 z-40 backdrop-blur bg-black/30 border-b border-white/5">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <span class="h-8 w-8 rounded-lg grad block"></span>
-        <div class="font-black tracking-tight">RECUPERA <span class="text-rose-500">CRÉDITO</span></div>
-      </div>
-      <nav class="hidden md:flex gap-6 text-sm">
-        <a href="#analise" class="hover:text-rose-400">Análise</a>
-        <a href="#como-funciona" class="hover:text-rose-400">Como funciona</a>
-        <a href="#relatos" class="hover:text-rose-400">Relatos</a>
-        <a href="/admin.html" class="hover:text-rose-400">Admin</a>
-      </nav>
-      <a href="#analise" class="ml-4 grad text-white rounded px-4 py-2 font-bold text-sm">Começar agora</a>
+    <!-- Login -->
+    <div id="login" class="bg-white rounded-xl border p-4 max-w-md">
+      <h2 class="font-bold mb-2">Acesso restrito</h2>
+      <form id="form-login" class="space-y-3">
+        <input name="user" placeholder="Usuário" class="w-full border rounded px-3 py-2" value="ADMIN">
+        <input name="pass" placeholder="Senha" class="w-full border rounded px-3 py-2" type="password" value="recupera123">
+        <button class="w-full bg-rose-600 hover:bg-rose-700 text-white rounded px-3 py-2 font-bold">Entrar</button>
+      </form>
+      <p class="text-xs text-slate-500 mt-2">Login: <b>ADMIN</b> — Senha: <b>recupera123</b></p>
     </div>
-  </header>
 
-  <!-- Seção Hero -->
-  <section class="max-w-7xl mx-auto px-4 pt-16 pb-12">
-    <div class="grid md:grid-cols-2 gap-8 items-center">
-      <div>
-        <h1 class="text-4xl font-extrabold leading-tight mb-4">
-          Recuperamos seu <span class="text-rose-500">crédito</span> com agilidade<br>e atendimento 100% humano.
-        </h1>
-        <p class="text-slate-300 mb-6">
-          PF e PJ com até 60 dias de atraso. Sem adiantamento — honorários só no sucesso.
-        </p>
-        <div class="flex gap-4">
-          <a href="#analise" class="grad text-white rounded px-6 py-3 font-bold">Iniciar análise gratuita</a>
-          <a href="#como-funciona" class="px-6 py-3 border rounded font-bold text-slate-200 hover:bg-white/10">Entender o processo</a>
+    <!-- App -->
+    <div id="app" class="hidden">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold">Leads</h2>
+        <button id="btn-sair" class="text-sm px-3 py-1 border rounded">Sair</button>
+      </div>
+      <div class="overflow-x-auto bg-white border rounded-xl">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-100">
+            <tr>
+              <th class="text-left p-2">Quando</th>
+              <th class="text-left p-2">Tipo</th>
+              <th class="text-left p-2">Nome</th>
+              <th class="text-left p-2">WhatsApp</th>
+              <th class="text-left p-2">Cidade</th>
+              <th class="text-left p-2">Tempo</th>
+              <th class="text-left p-2">Limite</th>
+              <th class="text-left p-2">Status</th>
+              <th class="text-left p-2">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="mt-10 border-t border-slate-200/70 bg-white">
+    <div class="max-w-6xl mx-auto px-4 py-6 text-sm text-slate-600">
+      <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+        <div class="space-y-1">
+          <div class="font-extrabold tracking-tight text-slate-900">
+            RECUPERA <span class="text-rose-600">CRÉDITO</span>
+          </div>
+          <p class="text-xs md:text-sm">
+            Exclusivo para clientes Santander — Cartão Físico e PJ. Atendimento 100% humano.
+          </p>
+          <p class="text-xs text-slate-500">
+            LGPD: dados tratados com finalidade específica, mínima necessidade e segurança. Somente cadastros com informações reais serão processados.
+          </p>
         </div>
-        <div class="flex gap-6 mt-6 text-sm text-slate-400">
-          <div><b>48h</b><br>Retorno médio</div>
-          <div><b>0%</b><br>Adiantamento</div>
-          <div><b>100%</b><br>Atendimento humano</div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <a href="https://wa.me/5521983941778" target="_blank"
+             class="inline-flex items-center gap-2 px-3 py-2 rounded border hover:bg-slate-50">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="text-emerald-600"><path d="M20.52 3.48A11.86 11.86 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.51 5.8L0 24l6.35-1.66A11.93 11.93 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 22a9.9 9.9 0 0 1-5.05-1.39l-.36-.21-3.77.99 1.01-3.67-.23-.38A9.96 9.96 0 1 1 12 22zm5.54-7.41c-.3-.15-1.78-.88-2.06-.98-.27-.1-.47-.15-.67.15-.2.3-.77.98-.95 1.18-.18.2-.35.23-.65.08-.3-.15-1.25-.46-2.38-1.48-.88-.78-1.47-1.74-1.65-2.04-.18-.3-.02-.47.13-.62.14-.14.3-.35.45-.53.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.5-.17 0-.38-.02-.58-.02-.2 0-.53.08-.8.38-.27.3-1.05 1.03-1.05 2.5s1.08 2.9 1.23 3.1c.15.2 2.13 3.25 5.17 4.56.72.31 1.28.5 1.72.64.72.23 1.37.2 1.88.12.57-.09 1.78-.73 2.03-1.44.25-.71.25-1.31.17-1.44-.08-.13-.27-.2-.57-.35z"/></svg>
+            Suporte no WhatsApp
+          </a>
+          <a href="#" class="text-slate-600 hover:underline">Política de Privacidade</a>
+          <a href="#" class="text-slate-600 hover:underline">Termos de Uso</a>
         </div>
       </div>
-      <div class="bg-white/5 border border-white/10 rounded-xl p-6">
-        <h2 class="font-bold mb-3">Solicite sua análise</h2>
-        <!-- aqui você coloca o form do PF ou PJ, igual ao que você já tinha -->
-        <form class="space-y-3">
-          <input class="w-full bg-transparent border border-white/20 rounded px-3 py-2 text-white" placeholder="Seu nome completo">
-          <input class="w-full bg-transparent border border-white/20 rounded px-3 py-2 text-white" placeholder="WhatsApp com DDD">
-          <button class="w-full grad text-white rounded px-3 py-2 font-bold">Enviar</button>
-        </form>
+
+      <div class="mt-4 text-xs text-slate-500">
+        © <span id="year"></span> Recupera Crédito. Todos os direitos reservados.
       </div>
     </div>
-  </section>
-
-  <!-- Seção Como funciona -->
-  <section id="como-funciona" class="max-w-7xl mx-auto px-4 pb-16">
-    <h2 class="text-2xl font-bold mb-6">Como funciona</h2>
-    <div class="grid md:grid-cols-3 gap-4 text-slate-300">
-      <div class="bg-white/5 p-4 rounded-xl">1. Análise gratuita</div>
-      <div class="bg-white/5 p-4 rounded-xl">2. Proposta e cronograma</div>
-      <div class="bg-white/5 p-4 rounded-xl">3. Execução e resultado</div>
-    </div>
-    <p class="text-xs text-slate-400 mt-3">Exclusivo para clientes Santander (Cartão Físico e PJ).</p>
-  </section>
-
-  <!-- Relatos -->
-  <section id="relatos" class="max-w-7xl mx-auto px-4 pb-16">
-    <h2 class="text-2xl font-bold mb-6">Relatos de clientes</h2>
-    <div class="grid md:grid-cols-3 gap-4 text-slate-300">
-      <div class="bg-white/5 p-4 rounded-xl">“Fui atendida pelo WhatsApp e em 48h já tinha caminho para regularizar. Recomendo!” — Camila R. (PF + 42 dias)</div>
-      <div class="bg-white/5 p-4 rounded-xl">“Sem promessa milagrosa, só processo. Deu certo e eu paguei os honorários feliz.” — Daniel S. (PF + 60 dias)</div>
-      <div class="bg-white/5 p-4 rounded-xl">“Voltamos a usar o cartão da empresa.” — Marcelo A. (PJ + 30 dias)</div>
-    </div>
-  </section>
-
-  <footer class="text-center text-xs text-slate-500 py-6 border-t border-white/5">
-    © Recupera Crédito — todos os direitos reservados.
   </footer>
 
+  <script>
+    const loginBox = document.getElementById('login');
+    const appBox = document.getElementById('app');
+    const tbody = document.getElementById('tbody');
+    const WPP = '5521983941778'; // troque pelo seu número
+
+    // ano automático no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function dt(s){ return new Date(s).toLocaleString('pt-BR'); }
+
+    async function loadLeads(){
+      const r = await fetch('/api/leads');
+      if(!r.ok){ loginBox.classList.remove('hidden'); appBox.classList.add('hidden'); return; }
+      const rows = await r.json();
+      tbody.innerHTML = rows.map(x=>`
+        <tr class="border-t">
+          <td class="p-2">${dt(x.created_at)}</td>
+          <td class="p-2">${x.tipo}</td>
+          <td class="p-2">${x.nome||'-'}</td>
+          <td class="p-2">${x.whatsapp||'-'}</td>
+          <td class="p-2">${x.cidade||'-'}</td>
+          <td class="p-2">${x.tempo||'-'}</td>
+          <td class="p-2">${x.limite||'-'}</td>
+          <td class="p-2">
+            <select data-id="${x.id}" class="status border rounded px-2 py-1">
+              ${['Novo','Em contato','Qualificado','Fechado','Descartado'].map(s=>`<option ${s===x.status?'selected':''}>${s}</option>`).join('')}
+            </select>
+          </td>
+          <td class="p-2">
+            <a target="_blank" class="text-rose-700 underline" href="https://wa.me/${WPP}?text=${encodeURIComponent('Olá '+(x.nome||'')+', recebi sua análise da Recupera Crédito. Podemos falar agora?')}">WhatsApp</a>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    document.getElementById('form-login').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const d = Object.fromEntries(new FormData(e.target).entries());
+      const r = await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+      if(r.ok){ loginBox.classList.add('hidden'); appBox.classList.remove('hidden'); loadLeads(); }
+      else alert('Login inválido');
+    });
+
+    document.getElementById('btn-sair').addEventListener('click', async ()=>{
+      await fetch('/logout',{method:'POST'});
+      appBox.classList.add('hidden'); loginBox.classList.remove('hidden');
+    });
+
+    document.addEventListener('change', async e=>{
+      if(e.target.classList.contains('status')){
+        const id = e.target.dataset.id;
+        const status = e.target.value;
+        await fetch('/api/leads/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});
+      }
+    });
+
+    // tenta carregar direto (se já estiver logado)
+    loadLeads();
+  </script>
 </body>
 </html>
