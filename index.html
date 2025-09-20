@@ -19,10 +19,9 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER (sem link de admin) -->
   <header class="sticky top-0 z-50 bg-[#0b1020]/90 backdrop-blur border-b border-white/10">
     <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-      <!-- Logo -->
       <div class="flex items-center gap-2">
         <div class="relative h-6 w-10">
           <div id="tiny-card" class="absolute inset-0 rounded-md glass border border-white/20 animate-[spin_6s_linear_infinite]"></div>
@@ -31,13 +30,11 @@
           <span class="text-white/80">RECUPERA</span> <span class="text-[var(--brand)]">CRÉDITO</span>
         </span>
       </div>
-      <!-- Menu -->
       <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
         <a href="#analise" class="hover:text-white">Análise</a>
         <a href="#como-funciona" class="hover:text-white">Como funciona</a>
         <a href="#relatos" class="hover:text-white">Relatos</a>
       </nav>
-      <!-- Botão -->
       <a href="#analise" class="pill bg-[var(--brand)] text-white font-bold rounded-full px-4 py-2 text-sm">Começar agora</a>
     </div>
   </header>
@@ -95,6 +92,7 @@
         <p class="text-white/70 text-sm">Analisamos seu caso e conduzimos o processo com transparência passo a passo.</p>
         <h3 class="font-semibold text-white">2. Sem Custos Antecipados</h3>
         <p class="text-white/70 text-sm">Modelo “voltou, pagou”: só recebemos após o resultado. Repasse direto do crédito recuperado.</p>
+        <p class="text-white/70 text-sm">Exemplo: crédito bloqueado de R$1.500 liberado em horas; repasse ~40% via Pix/link/cartão.</p>
         <h3 class="font-semibold text-white">3. Segurança e Sigilo</h3>
         <p class="text-white/70 text-sm">Em alguns casos pode ser necessário validações (token/senhas). Tudo ético e seguro.</p>
         <h3 class="font-semibold text-white">4. Resultado Rápido</h3>
@@ -179,7 +177,7 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- FOOTER (contatos separados PF/PJ) -->
   <footer class="border-t border-white/10 bg-[#0b1020]">
     <div class="max-w-6xl mx-auto px-4 py-8 grid md:grid-cols-3 gap-8 text-sm text-white/80">
       <div>
@@ -193,10 +191,10 @@
       <div>
         <h4 class="font-bold mb-2 text-white">Contato</h4>
         <ul class="space-y-1">
-          <li>WhatsApp PF (Marcos): <a class="underline" href="https://wa.me/5521991451192" target="_blank" rel="noopener">+55 21 99145-1192</a></li>
-          <li>WhatsApp PJ (João): <a class="underline" href="https://wa.me/5561991235114" target="_blank" rel="noopener">+55 61 99123-5114</a></li>
+          <li>WhatsApp PF: <a class="underline" href="https://wa.me/5561999999999" target="_blank" rel="noopener">+55 61 99999-9999</a></li>
+          <li>WhatsApp PJ: <a class="underline" href="https://wa.me/5521983941778" target="_blank" rel="noopener">+55 21 98394-1778</a></li>
           <li>E-mail: <a class="underline" href="mailto:contato@recuperacredito.site">contato@recuperacredito.site</a></li>
-          <li>CNPJ: <span>17.124.794/0001-06</span></li>
+          <li>CNPJ: <span>12.345.678/0001-90</span></li>
         </ul>
       </div>
       <div>
@@ -214,12 +212,12 @@
   </footer>
 
   <script>
-    // inputs estilo
+    // estilo inputs com alto contraste
     document.querySelectorAll('.input').forEach(i=>{
-      i.className += ' w-full rounded-xl border border-slate-200 px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/40 focus:border-rose-400';
+      i.className += ' w-full rounded-xl border border-slate-300 bg-white text-slate-900 placeholder-slate-500 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-rose-500/40 focus:border-rose-400';
     });
 
-    // tiny card brilho
+    // brilho do “cartão”
     const tiny = document.getElementById('tiny-card');
     if (tiny){ tiny.style.background='linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.06))'; }
 
@@ -227,4 +225,46 @@
     const card = document.querySelector('.tilt');
     if(card){
       const damp = 25;
-      card
+      card.addEventListener('mousemove', (e)=>{
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left)/r.width - .5;
+        const y = (e.clientY - r.top)/r.height - .5;
+        card.style.transform = `perspective(1400px) rotateY(${ -x*damp }deg) rotateX(${ y*damp/2 }deg)`;
+      });
+      card.addEventListener('mouseleave', ()=>{ card.style.transform = 'perspective(1400px) rotateY(-8deg) rotateX(5deg)'; });
+    }
+
+    // WhatsApp por tipo
+    const WPP_PF = '5561999999999';  // << coloque o real de PF (DDD 61)
+    const WPP_PJ = '5521983941778';  // << já usado para PJ
+
+    function openWhatsApp(nome, fone, tipo){
+      const wpp = (tipo === 'PJ') ? WPP_PJ : WPP_PF;
+      const msg = encodeURIComponent(`Análise ${tipo}\nTenho interesse em recuperar o crédito Santander (${tipo}).\n\n• nome: ${nome}\n• whatsapp: ${fone}`);
+      window.open(`https://wa.me/${wpp}?text=${msg}`, '_blank');
+    }
+
+    async function sendLead(form, tipo){
+      const d = Object.fromEntries(new FormData(form).entries());
+      d.tipo = tipo;
+      try {
+        const r = await fetch('/api/leads', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d)});
+        await r.json().catch(()=>({}));
+        if(r.ok){
+          openWhatsApp(d.nome, d.whatsapp, tipo);
+          form.reset();
+          alert('Recebemos seus dados! Vamos falar com você no WhatsApp.');
+        }else{
+          alert('Preencha nome e WhatsApp.');
+        }
+      } catch(e){ alert('Falha ao enviar. Tente novamente.'); }
+    }
+
+    document.getElementById('form-pf').addEventListener('submit', e=>{ e.preventDefault(); sendLead(e.target,'PF'); });
+    document.getElementById('form-pj').addEventListener('submit', e=>{ e.preventDefault(); sendLead(e.target,'PJ'); });
+
+    // ano do rodapé
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
