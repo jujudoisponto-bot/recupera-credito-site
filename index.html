@@ -3,223 +3,88 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>RECUPERA CRÉDITO — PF & PJ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <title>Recupera Crédito — Análise gratuita</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    :root{--brand:#e11d48;--brand2:#f97316}
-    html,body{background:#0b1020;color:#e5e7eb;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}
-    .glass{background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px)}
-    .card-3d{transform:perspective(1400px) rotateY(-8deg) rotateX(5deg);box-shadow:0 30px 80px rgba(0,0,0,.45);transform-style:preserve-3d}
-    .tilt:hover{transform:perspective(1400px) rotateY(-3deg) rotateX(1deg)}
-    .pill{box-shadow:0 10px 30px rgba(225,29,72,.25)}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0b1323;color:#f1f5f9}
+    .grad{background:linear-gradient(135deg,#e11d48,#f97316)}
   </style>
 </head>
 <body>
-  <!-- NAV -->
-  <header class="sticky top-0 z-50 bg-[#0b1020]/90 backdrop-blur border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-4 flex items-center justify-between h-14">
-      <div class="flex items-center gap-2">
-        <!-- cartão girando (no lugar do ponto vermelho) -->
-        <div class="relative h-6 w-10">
-          <div id="tiny-card" class="absolute inset-0 rounded-md glass border border-white/20 animate-[spin_6s_linear_infinite]"></div>
-        </div>
-        <span class="font-extrabold tracking-wide"><span class="text-white/80">RECUPERA</span> <span class="text-[var(--brand)]">CRÉDITO</span></span>
+
+  <!-- Cabeçalho fixo -->
+  <header class="sticky top-0 z-40 backdrop-blur bg-black/30 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="h-8 w-8 rounded-lg grad block"></span>
+        <div class="font-black tracking-tight">RECUPERA <span class="text-rose-500">CRÉDITO</span></div>
       </div>
-      <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
-        <a href="#analise" class="hover:text-white">Análise</a>
-        <a href="#como-funciona" class="hover:text-white">Como funciona</a>
-        <a href="#relatos" class="hover:text-white">Relatos</a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#analise" class="hover:text-rose-400">Análise</a>
+        <a href="#como-funciona" class="hover:text-rose-400">Como funciona</a>
+        <a href="#relatos" class="hover:text-rose-400">Relatos</a>
+        <a href="/admin.html" class="hover:text-rose-400">Admin</a>
       </nav>
-      <a href="#analise" class="pill bg-[var(--brand)] text-white font-bold rounded-full px-4 py-2 text-sm">Começar agora</a>
+      <a href="#analise" class="ml-4 grad text-white rounded px-4 py-2 font-bold text-sm">Começar agora</a>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="relative overflow-hidden">
-    <div class="absolute inset-0 -z-10" style="background:
-      radial-gradient(50% 40% at 20% 10%, rgba(225,29,72,.35), transparent 60%),
-      radial-gradient(55% 45% at 90% 30%, rgba(249,115,22,.25), transparent 60%),
-      radial-gradient(50% 40% at 60% 90%, rgba(255,255,255,.06), transparent 60%)"></div>
-    <div class="max-w-6xl mx-auto px-4 py-12 grid lg:grid-cols-2 gap-10 items-center">
-      <div class="space-y-5">
-        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-white/10 border border-white/15">ESPECIALISTAS EM SANTANDER</span>
-        <h1 class="text-4xl lg:text-5xl font-extrabold leading-tight">
-          Recuperamos seu <span class="text-[var(--brand)]">crédito</span> com
-          <span class="underline decoration-[var(--brand)] decoration-4 underline-offset-4">agilidade</span> e atendimento 100% humano.
+  <!-- Seção Hero -->
+  <section class="max-w-7xl mx-auto px-4 pt-16 pb-12">
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h1 class="text-4xl font-extrabold leading-tight mb-4">
+          Recuperamos seu <span class="text-rose-500">crédito</span> com agilidade<br>e atendimento 100% humano.
         </h1>
-        <p class="text-white/70">PF e PJ com até 60 dias de atraso. Sem adiantamento — honorários só no sucesso.</p>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <a href="#analise" class="rounded-full px-5 py-3 font-extrabold bg-[var(--brand)] shadow-lg text-white">Iniciar análise gratuita</a>
-          <a href="#como-funciona" class="rounded-full px-5 py-3 font-extrabold bg-white/10 border border-white/15">Entender o processo</a>
+        <p class="text-slate-300 mb-6">
+          PF e PJ com até 60 dias de atraso. Sem adiantamento — honorários só no sucesso.
+        </p>
+        <div class="flex gap-4">
+          <a href="#analise" class="grad text-white rounded px-6 py-3 font-bold">Iniciar análise gratuita</a>
+          <a href="#como-funciona" class="px-6 py-3 border rounded font-bold text-slate-200 hover:bg-white/10">Entender o processo</a>
         </div>
-        <div class="flex items-center gap-6 pt-1 text-white/70">
-          <div class="text-center"><div class="text-2xl font-extrabold">48h</div><div class="text-xs">Retorno médio</div></div>
-          <div class="text-center"><div class="text-2xl font-extrabold">0%</div><div class="text-xs">Adiantamento</div></div>
-          <div class="text-center"><div class="text-2xl font-extrabold">100%</div><div class="text-xs">Atendimento humano</div></div>
+        <div class="flex gap-6 mt-6 text-sm text-slate-400">
+          <div><b>48h</b><br>Retorno médio</div>
+          <div><b>0%</b><br>Adiantamento</div>
+          <div><b>100%</b><br>Atendimento humano</div>
         </div>
       </div>
-
-      <!-- cartão 3D -->
-      <div class="relative">
-        <div class="absolute -inset-6 -z-10 rounded-[28px] opacity-60" style="background:radial-gradient(600px 180px at 20% -10%, rgba(225,29,72,.35),transparent 60%), radial-gradient(600px 200px at 120% 110%, rgba(249,115,22,.35), transparent 60%);"></div>
-        <div class="relative mx-auto w-[92%] aspect-[1.6] rounded-3xl glass text-white card-3d p-6 flex flex-col justify-between select-none tilt">
-          <div class="flex items-center justify-between text-sm opacity-90">
-            <span class="font-bold tracking-wide">Santander</span>
-            <span class="font-semibold">VISA</span>
-          </div>
-          <div class="text-3xl font-extrabold tracking-[.35em]">**** 1234 • 56** • **</div>
-          <div class="flex items-center justify-between text-xs opacity-90">
-            <span>VALID 12/29</span>
-            <span class="px-2 py-1 rounded-md bg-white/15 border border-white/20">Cartão ilustrativo</span>
-          </div>
-        </div>
+      <div class="bg-white/5 border border-white/10 rounded-xl p-6">
+        <h2 class="font-bold mb-3">Solicite sua análise</h2>
+        <!-- aqui você coloca o form do PF ou PJ, igual ao que você já tinha -->
+        <form class="space-y-3">
+          <input class="w-full bg-transparent border border-white/20 rounded px-3 py-2 text-white" placeholder="Seu nome completo">
+          <input class="w-full bg-transparent border border-white/20 rounded px-3 py-2 text-white" placeholder="WhatsApp com DDD">
+          <button class="w-full grad text-white rounded px-3 py-2 font-bold">Enviar</button>
+        </form>
       </div>
     </div>
   </section>
 
-  <!-- COMO FUNCIONA -->
-  <section id="como-funciona" class="max-w-6xl mx-auto px-4 py-12">
-    <h2 class="text-3xl font-extrabold text-center mb-10">Como Funciona</h2>
-    <div class="grid md:grid-cols-2 gap-6 items-start">
-      <div class="space-y-4 bg-white/5 border border-white/10 rounded-2xl p-6">
-        <p class="text-white/80">Ajudamos você a recuperar valores perdidos ou taxas abusivas cobradas por instituições financeiras — um direito que 90% dos consumidores desconhecem. Somos uma equipe especializada, com 10 profissionais dedicados diariamente.</p>
-        <h3 class="font-semibold text-white">1. Atendimento Especializado</h3>
-        <p class="text-white/70 text-sm">Analisamos seu caso e conduzimos o processo com transparência passo a passo.</p>
-        <h3 class="font-semibold text-white">2. Sem Custos Antecipados</h3>
-        <p class="text-white/70 text-sm">Modelo “voltou, pagou”: só recebemos após o resultado. Repasse direto do crédito recuperado.</p>
-        <p class="text-white/70 text-sm">Exemplo: crédito bloqueado de R$1.500 liberado em horas; repasse ~40% via Pix/link/cartão.</p>
-        <h3 class="font-semibold text-white">3. Segurança e Sigilo</h3>
-        <p class="text-white/70 text-sm">Em alguns casos pode ser necessário validações (token/senhas). Tudo ético e seguro.</p>
-        <h3 class="font-semibold text-white">4. Resultado Rápido</h3>
-        <p class="text-white/70 text-sm">Em poucas horas seu crédito volta a estar disponível, com acompanhamento direto.</p>
-      </div>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="rounded-2xl bg-gradient-to-br from-rose-100/20 to-amber-50/10 p-6 border border-white/10">
-          <div class="text-4xl font-extrabold text-[var(--brand)]">90%</div>
-          <p class="text-sm mt-1 text-white/70">desconhecem esse direito</p>
-        </div>
-        <div class="rounded-2xl bg-gradient-to-br from-amber-50/10 to-rose-100/20 p-6 border border-white/10">
-          <div class="text-4xl font-extrabold text-[var(--brand)]">10</div>
-          <p class="text-sm mt-1 text-white/70">profissionais dedicados</p>
-        </div>
-        <div class="col-span-2 rounded-2xl bg-gradient-to-r from-[var(--brand)] to-[var(--brand2)] text-white p-6">
-          <p class="text-lg font-semibold">Transformamos cartões “mortos” em crédito disponível novamente, com segurança.</p>
-        </div>
-      </div>
+  <!-- Seção Como funciona -->
+  <section id="como-funciona" class="max-w-7xl mx-auto px-4 pb-16">
+    <h2 class="text-2xl font-bold mb-6">Como funciona</h2>
+    <div class="grid md:grid-cols-3 gap-4 text-slate-300">
+      <div class="bg-white/5 p-4 rounded-xl">1. Análise gratuita</div>
+      <div class="bg-white/5 p-4 rounded-xl">2. Proposta e cronograma</div>
+      <div class="bg-white/5 p-4 rounded-xl">3. Execução e resultado</div>
+    </div>
+    <p class="text-xs text-slate-400 mt-3">Exclusivo para clientes Santander (Cartão Físico e PJ).</p>
+  </section>
+
+  <!-- Relatos -->
+  <section id="relatos" class="max-w-7xl mx-auto px-4 pb-16">
+    <h2 class="text-2xl font-bold mb-6">Relatos de clientes</h2>
+    <div class="grid md:grid-cols-3 gap-4 text-slate-300">
+      <div class="bg-white/5 p-4 rounded-xl">“Fui atendida pelo WhatsApp e em 48h já tinha caminho para regularizar. Recomendo!” — Camila R. (PF + 42 dias)</div>
+      <div class="bg-white/5 p-4 rounded-xl">“Sem promessa milagrosa, só processo. Deu certo e eu paguei os honorários feliz.” — Daniel S. (PF + 60 dias)</div>
+      <div class="bg-white/5 p-4 rounded-xl">“Voltamos a usar o cartão da empresa.” — Marcelo A. (PJ + 30 dias)</div>
     </div>
   </section>
 
-  <!-- FORM PF/PJ -->
-  <section id="analise" class="max-w-6xl mx-auto px-4 pb-16">
-    <h2 class="text-2xl font-extrabold mb-4">Iniciar análise gratuita</h2>
+  <footer class="text-center text-xs text-slate-500 py-6 border-t border-white/5">
+    © Recupera Crédito — todos os direitos reservados.
+  </footer>
 
-    <div class="grid md:grid-cols-2 gap-6">
-      <!-- PF -->
-      <form id="form-pf" class="bg-white rounded-2xl p-6 shadow-[0_10px_40px_rgba(0,0,0,.3)]">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="font-bold text-slate-900">Pessoa Física (PF)</h3>
-          <span class="text-xs px-2 py-1 rounded bg-rose-100 text-rose-700 border border-rose-200">Cartão Santander</span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input name="nome" class="input" placeholder="Seu nome completo" required>
-          <input name="cpf" class="input" placeholder="CPF">
-          <input name="whatsapp" class="input" placeholder="WhatsApp com DDD" required>
-          <select name="tempo" class="input" required>
-            <option value="">Tempo de atraso</option>
-            <option>Até 30 dias</option>
-            <option>31 a 60 dias</option>
-            <option>Mais de 60 dias</option>
-          </select>
-          <input name="limite" class="input" placeholder="Limite do cartão (R$)" type="number" step="0.01">
-          <input name="cidade" class="input" placeholder="Cidade/UF">
-        </div>
-        <textarea name="notas" class="input mt-3" rows="3" placeholder="Observações (opcional)"></textarea>
-        <button class="mt-4 w-full rounded-full bg-[var(--brand)] text-white font-bold py-3">Enviar & chamar no WhatsApp</button>
-      </form>
-
-      <!-- PJ -->
-      <form id="form-pj" class="bg-white rounded-2xl p-6 shadow-[0_10px_40px_rgba(0,0,0,.3)]">
-        <div class="flex items-center justify-between mb-2">
-          <h3 class="font-bold text-slate-900">Pessoa Jurídica (PJ)</h3>
-          <span class="text-xs px-2 py-1 rounded bg-rose-100 text-rose-700 border border-rose-200">Cartão Santander</span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <input name="nome" class="input" placeholder="Razão social" required>
-          <input name="cnpj" class="input" placeholder="CNPJ">
-          <input name="whatsapp" class="input" placeholder="WhatsApp com DDD" required>
-          <select name="tempo" class="input" required>
-            <option value="">Tempo de atraso</option>
-            <option>Até 30 dias</option>
-            <option>31 a 60 dias</option>
-            <option>Mais de 60 dias</option>
-          </select>
-          <input name="limite" class="input" placeholder="Limite do cartão (R$)" type="number" step="0.01">
-          <input name="cidade" class="input" placeholder="Cidade/UF">
-        </div>
-        <textarea name="notas" class="input mt-3" rows="3" placeholder="Observações (opcional)"></textarea>
-        <button class="mt-4 w-full rounded-full bg-[var(--brand)] text-white font-bold py-3">Enviar & chamar no WhatsApp</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- RELATOS -->
-  <section id="relatos" class="max-w-6xl mx-auto px-4 pb-16">
-    <h2 class="text-2xl font-extrabold mb-4">Relatos de clientes</h2>
-    <div class="grid md:grid-cols-3 gap-4">
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-4">“Fui atendida pelo WhatsApp e em 48h já tinha caminho para regularizar. Recomendo!” — Camila R. (PF • 42 dias)</div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-4">“Sem promessa milagrosa, só processo. Deu certo e eu paguei os honorários feliz.” — Daniel S. (PF • 60 dias)</div>
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-4">“Voltamos a usar o cartão da empresa.” — Marcelo A. (PJ • 30 dias)</div>
-    </div>
-  </section>
-
-  <script>
-    // inputs estilo
-    document.querySelectorAll('.input').forEach(i=>{
-      i.className += ' w-full rounded-xl border border-slate-200 px-3 py-2 text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500/40 focus:border-rose-400';
-    });
-
-    // tiny card brilho
-    const tiny = document.getElementById('tiny-card');
-    if (tiny){ tiny.style.background='linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,.06))'; }
-
-    // tilt simples
-    const card = document.querySelector('.tilt');
-    if(card){
-      const damp = 25;
-      card.addEventListener('mousemove', (e)=>{
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left)/r.width - .5;
-        const y = (e.clientY - r.top)/r.height - .5;
-        card.style.transform = `perspective(1400px) rotateY(${ -x*damp }deg) rotateX(${ y*damp/2 }deg)`;
-      });
-      card.addEventListener('mouseleave', ()=>{ card.style.transform = 'perspective(1400px) rotateY(-8deg) rotateX(5deg)'; });
-    }
-
-    // helpers
-    const WPP_NUMBER = '5521983941778'; // <- troque pelo seu número (com DDI)
-    function openWhatsApp(nome, fone, tipo){
-      const msg = encodeURIComponent(`Análise ${tipo}\nTenho interesse em recuperar o crédito Santander (${tipo}).\n\n• nome: ${nome}\n• whatsapp: ${fone}`);
-      window.open(`https://wa.me/${WPP_NUMBER}?text=${msg}`, '_blank');
-    }
-    async function sendLead(form, tipo){
-      const d = Object.fromEntries(new FormData(form).entries());
-      d.tipo = tipo;
-      try {
-        const r = await fetch('/api/leads', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(d)});
-        const j = await r.json();
-        if(r.ok){
-          openWhatsApp(d.nome, d.whatsapp, tipo);
-          form.reset();
-          alert('Recebemos seus dados! Vamos falar com você no WhatsApp.');
-        }else{
-          alert('Preencha nome e WhatsApp.');
-        }
-      } catch(e){ alert('Falha ao enviar. Tente novamente.'); }
-    }
-    document.getElementById('form-pf').addEventListener('submit', e=>{ e.preventDefault(); sendLead(e.target,'PF'); });
-    document.getElementById('form-pj').addEventListener('submit', e=>{ e.preventDefault(); sendLead(e.target,'PJ'); });
-  </script>
 </body>
 </html>
