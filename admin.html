@@ -1,107 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Admin — Recupera Crédito</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root{--brand:#e11d48;--brand2:#f97316;--ink:#0f172a;--bg:#0b1220;--card:#0f172a;--border:#1f2937}
-    body{background:#0a0f1c;color:#e5e7eb}
-    .brand-grad{background:linear-gradient(135deg,var(--brand),var(--brand2))}
-    .badge{font-size:.75rem;padding:.15rem .5rem;border-radius:.5rem;font-weight:700}
-    .b-novo{background:#eef2ff;color:#4338ca}
-    .b-contato{background:#fff7ed;color:#c2410c}
-    .b-qualificado{background:#ecfeff;color:#155e75}
-    .b-fechado{background:#ecfdf5;color:#065f46}
-    .b-descartado{background:#fef2f2;color:#991b1b}
-    .thead-sticky thead th{position:sticky;top:0;z-index:2;box-shadow:0 1px 0 #1f2937;background:#0f172a}
-    .table-dense td,.table-dense th{padding:.55rem .6rem}
-    .shadow-soft{box-shadow:0 6px 24px rgba(2,8,23,.35)}
-    .card{background:#0f172a;border:1px solid #1f2937}
-  </style>
+  <style>body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial}</style>
 </head>
-<body>
-  <!-- HEADER -->
-  <header class="card">
-    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <span class="inline-flex h-8 w-8 rounded-lg brand-grad"></span>
-        <div class="leading-tight">
-          <div class="font-black tracking-tight">RECUPERA <span class="text-rose-500">CRÉDITO</span></div>
-          <div class="text-xs text-slate-400 -mt-0.5">Painel administrativo</div>
-        </div>
-      </div>
-      <div class="flex items-center gap-2">
-        <button id="btn-export" class="text-sm px-3 py-1.5 rounded border border-white/20">Exportar CSV</button>
-        <button id="btn-sair" class="text-sm px-3 py-1.5 rounded border border-white/20">Sair</button>
-      </div>
+<body class="bg-slate-50">
+  <div class="max-w-6xl mx-auto p-4">
+    <h1 class="text-2xl font-extrabold mb-4">Painel — Recupera Crédito</h1>
+
+    <!-- Login -->
+    <div id="login" class="bg-white rounded-xl border p-4 max-w-md">
+      <h2 class="font-bold mb-2">Acesso restrito</h2>
+      <form id="form-login" class="space-y-3">
+        <input name="user" placeholder="Usuário" class="w-full border rounded px-3 py-2" value="ADMIN">
+        <input name="pass" placeholder="Senha" class="w-full border rounded px-3 py-2" type="password" value="recupera123">
+        <button class="w-full bg-rose-600 hover:bg-rose-700 text-white rounded px-3 py-2 font-bold">Entrar</button>
+      </form>
+      <p class="text-xs text-slate-500 mt-2">Login: <b>ADMIN</b> — Senha: <b>recupera123</b></p>
     </div>
-  </header>
 
-  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
-    <!-- LOGIN -->
-    <section id="login" class="fixed inset-0 z-50 grid place-items-center bg-black/60">
-      <div class="card shadow-soft w-full max-w-md rounded-2xl overflow-hidden">
-        <div class="brand-grad h-1.5 w-full"></div>
-        <div class="p-6">
-          <h1 class="text-xl font-extrabold mb-1">Acesso restrito</h1>
-          <p class="text-sm text-slate-400 mb-4">Use suas credenciais para entrar no painel.</p>
-          <form id="form-login" class="space-y-3">
-            <div>
-              <label class="text-xs text-slate-400">Usuário</label>
-              <input name="user" class="w-full bg-slate-900 border border-white/10 rounded px-3 py-2" value="ADMIN">
-            </div>
-            <div>
-              <label class="text-xs text-slate-400">Senha</label>
-              <input name="pass" type="password" class="w-full bg-slate-900 border border-white/10 rounded px-3 py-2" value="recupera123">
-            </div>
-            <button class="w-full brand-grad text-white rounded px-3 py-2 font-bold">Entrar</button>
-            <p class="text-xs text-slate-500">Exemplo: <b>ADMIN</b> / <b>recupera123</b></p>
-          </form>
-        </div>
+    <!-- App -->
+    <div id="app" class="hidden">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-bold">Leads</h2>
+        <button id="btn-sair" class="text-sm px-3 py-1 border rounded">Sair</button>
       </div>
-    </section>
-
-    <!-- APP -->
-    <section id="app" class="hidden space-y-6">
-      <!-- METRICAS -->
-      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
-        <div class="card rounded-xl p-4"><div class="text-xs text-slate-400">Total</div><div id="m-total" class="text-2xl font-extrabold">0</div></div>
-        <div class="card rounded-xl p-4"><div class="text-xs text-slate-400">Novo</div><div id="m-novo" class="text-2xl font-extrabold">0</div></div>
-        <div class="card rounded-xl p-4"><div class="text-xs text-slate-400">Em contato</div><div id="m-contato" class="text-2xl font-extrabold">0</div></div>
-        <div class="card rounded-xl p-4"><div class="text-xs text-slate-400">Qualificado</div><div id="m-qualificado" class="text-2xl font-extrabold">0</div></div>
-        <div class="card rounded-xl p-4"><div class="text-xs text-slate-400">Fechado</div><div id="m-fechado" class="text-2xl font-extrabold">0</div></div>
-      </div>
-
-      <!-- FILTROS -->
-      <div class="card rounded-xl p-4">
-        <div class="grid md:grid-cols-5 gap-3">
-          <input id="q" class="bg-slate-900 border border-white/10 rounded px-3 py-2 md:col-span-2" placeholder="Buscar por nome, WhatsApp ou cidade…">
-          <select id="f-tipo" class="bg-slate-900 border border-white/10 rounded px-3 py-2">
-            <option value="">Tipo (todos)</option><option>PF</option><option>PJ</option>
-          </select>
-          <select id="f-status" class="bg-slate-900 border border-white/10 rounded px-3 py-2">
-            <option value="">Status (todos)</option>
-            <option>Novo</option><option>Em contato</option><option>Qualificado</option><option>Fechado</option><option>Descartado</option>
-          </select>
-          <select id="sort" class="bg-slate-900 border border-white/10 rounded px-3 py-2">
-            <option value="created_at:desc">Mais recentes</option>
-            <option value="created_at:asc">Mais antigos</option>
-            <option value="nome:asc">Nome (A→Z)</option>
-            <option value="nome:desc">Nome (Z→A)</option>
-          </select>
-        </div>
-        <div class="flex items-center justify-between mt-3">
-          <div class="text-xs text-slate-500">Autoatualização a cada <b>10s</b>.</div>
-          <button id="btn-refresh" class="px-3 py-2 rounded bg-slate-800">Atualizar</button>
-        </div>
-      </div>
-
-      <!-- TABELA -->
-      <div class="card rounded-xl overflow-hidden thead-sticky">
-        <table class="w-full text-sm table-dense">
-          <thead>
+      <div class="overflow-x-auto bg-white border rounded-xl">
+        <table class="w-full text-sm">
+          <thead class="bg-slate-100">
             <tr>
               <th class="text-left p-2">Quando</th>
               <th class="text-left p-2">Tipo</th>
@@ -116,186 +45,62 @@
           </thead>
           <tbody id="tbody"></tbody>
         </table>
-        <div id="loading" class="p-6 grid gap-2">
-          <div class="h-3 bg-slate-800 animate-pulse rounded"></div>
-          <div class="h-3 bg-slate-800 animate-pulse rounded"></div>
-          <div class="h-3 bg-slate-800 animate-pulse rounded"></div>
-        </div>
-        <div id="empty" class="hidden p-10 text-center text-slate-500">Nenhum registro.</div>
       </div>
-
-      <div class="flex items-center justify-between text-xs text-slate-500">
-        <div id="count">0 registro(s)</div>
-        <div class="flex items-center gap-2">
-          <span class="badge b-novo">Novo</span>
-          <span class="badge b-contato">Em contato</span>
-          <span class="badge b-qualificado">Qualificado</span>
-          <span class="badge b-fechado">Fechado</span>
-          <span class="badge b-descartado">Descartado</span>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <div id="toasts" class="fixed top-4 right-4 z-[60] space-y-2"></div>
+    </div>
+  </div>
 
   <script>
-    // ========= ELEMENTOS =========
     const loginBox = document.getElementById('login');
-    const appBox   = document.getElementById('app');
-    const tbody    = document.getElementById('tbody');
-    const loading  = document.getElementById('loading');
-    const emptyEl  = document.getElementById('empty');
-    const countLbl = document.getElementById('count');
-    const mTot = document.getElementById('m-total');
-    const mNovo = document.getElementById('m-novo');
-    const mContato = document.getElementById('m-contato');
-    const mQuali = document.getElementById('m-qualificado');
-    const mFechado = document.getElementById('m-fechado');
-    const q = document.getElementById('q');
-    const fTipo = document.getElementById('f-tipo');
-    const fStatus = document.getElementById('f-status');
-    const sortSel = document.getElementById('sort');
+    const appBox = document.getElementById('app');
+    const tbody = document.getElementById('tbody');
+    const WPP = '5521983941778'; // contato interno
 
-    const dt = s => new Date(s).toLocaleString('pt-BR');
-    const phone = s => (s||'').replace(/[^\d]/g,'');
-    const badge = (st) => {
-      const m = {'Novo':'b-novo','Em contato':'b-contato','Qualificado':'b-qualificado','Fechado':'b-fechado','Descartado':'b-descartado'};
-      return `<span class="badge ${m[st]||'b-novo'}">${st}</span>`;
-    };
-    const csv = rows => {
-      if(!rows.length) return '';
-      const keys = Object.keys(rows[0]);
-      const head = keys.join(',');
-      const body = rows.map(r=>keys.map(k=>JSON.stringify(r[k]??'')).join(',')).join('\n');
-      return head+'\n'+body;
-    };
-    function toast(msg,type='ok'){
-      const el = document.createElement('div');
-      el.className = 'rounded-lg px-3 py-2 text-sm text-white shadow-lg '+(type==='ok'?'bg-emerald-600':'bg-rose-600');
-      el.textContent = msg;
-      document.getElementById('toasts').appendChild(el);
-      setTimeout(()=>{ el.style.opacity='0'; el.style.transform='translateY(-6px)'; }, 1800);
-      setTimeout(()=>el.remove(), 2300);
-    }
+    function dt(s){ return new Date(s).toLocaleString('pt-BR'); }
 
-    let ALL = [];
-    let poller = null;
-
-    function updateSummary(rows){
-      mTot.textContent = rows.length;
-      mNovo.textContent = rows.filter(r=>r.status==='Novo').length;
-      mContato.textContent = rows.filter(r=>r.status==='Em contato').length;
-      mQuali.textContent = rows.filter(r=>r.status==='Qualificado').length;
-      mFechado.textContent = rows.filter(r=>r.status==='Fechado').length;
-    }
-
-    function applyFilters(){
-      let rows = [...ALL];
-      const term = q.value.toLowerCase().trim();
-      if(term){
-        rows = rows.filter(r =>
-          (r.nome||'').toLowerCase().includes(term) ||
-          (r.whatsapp||'').toLowerCase().includes(term) ||
-          (r.cidade||'').toLowerCase().includes(term)
-        );
-      }
-      if(fTipo.value) rows = rows.filter(r => r.tipo === fTipo.value);
-      if(fStatus.value) rows = rows.filter(r => r.status === fStatus.value);
-
-      const [k,dir] = sortSel.value.split(':');
-      rows.sort((a,b)=>{
-        const A = (a[k]||'').toString().toLowerCase();
-        const B = (b[k]||'').toString().toLowerCase();
-        if(A<B) return dir==='asc'?-1:1;
-        if(A>B) return dir==='asc'?1:-1;
-        return 0;
-      });
-
-      render(rows); updateSummary(rows);
-    }
-
-    function render(rows){
-      countLbl.textContent = `${rows.length} registro(s)`;
-      loading.classList.add('hidden');
-      emptyEl.classList.toggle('hidden', rows.length>0);
-
-      tbody.innerHTML = rows.map(r=>`
-        <tr class="border-t border-slate-800">
-          <td class="p-2 whitespace-nowrap">${dt(r.created_at)}</td>
-          <td class="p-2">${r.tipo}</td>
-          <td class="p-2">${r.nome||'-'}</td>
+    async function loadLeads(){
+      const r = await fetch('/api/leads');
+      if(!r.ok){ loginBox.classList.remove('hidden'); appBox.classList.add('hidden'); return; }
+      const rows = await r.json();
+      tbody.innerHTML = rows.map(x=>`
+        <tr class="border-t">
+          <td class="p-2">${dt(x.created_at)}</td>
+          <td class="p-2">${x.tipo}</td>
+          <td class="p-2">${x.nome||'-'}</td>
+          <td class="p-2">${x.whatsapp||'-'}</td>
+          <td class="p-2">${x.cidade||'-'}</td>
+          <td class="p-2">${x.tempo||'-'}</td>
+          <td class="p-2">${x.limite||'-'}</td>
           <td class="p-2">
-            ${(r.whatsapp||'-')}
-            ${r.whatsapp?`<a class="ml-2 underline text-rose-400" target="_blank" href="https://wa.me/${phone(r.whatsapp)}">abrir</a>`:''}
-          </td>
-          <td class="p-2">${r.cidade||'-'}</td>
-          <td class="p-2">${r.tempo||'-'}</td>
-          <td class="p-2">${r.limite!=null?r.limite:'-'}</td>
-          <td class="p-2">
-            <select data-id="${r.id}" class="status bg-slate-900 border border-white/10 rounded px-2 py-1">
-              ${['Novo','Em contato','Qualificado','Fechado','Descartado'].map(s=>`<option ${s===r.status?'selected':''}>${s}</option>`).join('')}
+            <select data-id="${x.id}" class="status border rounded px-2 py-1">
+              ${['Novo','Em contato','Qualificado','Fechado','Descartado'].map(s=>`<option ${s===x.status?'selected':''}>${s}</option>`).join('')}
             </select>
-            <div class="mt-1">${badge(r.status||'Novo')}</div>
           </td>
-          <td class="p-2"></td>
+          <td class="p-2">
+            <a target="_blank" class="text-rose-700 underline" href="https://wa.me/${WPP}?text=${encodeURIComponent('Olá '+(x.nome||'')+', recebi sua análise da Recupera Crédito. Podemos falar agora?')}">WhatsApp</a>
+          </td>
         </tr>
       `).join('');
     }
 
-    async function fetchLeads(play=false){
-      try{
-        const r = await fetch('/api/leads');
-        if(!r.ok){ appBox.classList.add('hidden'); loginBox.classList.remove('hidden'); return; }
-        const rows = await r.json();
-        ALL = rows; applyFilters();
-        if(play && rows.length){ /* beep opcional omitido */ }
-      }catch(_){ toast('Erro ao carregar dados','err'); }
-    }
-
-    // LOGIN
-    document.getElementById('form-login').addEventListener('submit', async (e)=>{
+    document.getElementById('form-login').addEventListener('submit', async e=>{
       e.preventDefault();
       const d = Object.fromEntries(new FormData(e.target).entries());
       const r = await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
-      if(r.ok){
-        loginBox.classList.add('hidden');
-        appBox.classList.remove('hidden');
-        loading.classList.remove('hidden'); emptyEl.classList.add('hidden'); tbody.innerHTML='';
-        await fetchLeads(false);
-        clearInterval(poller); poller = setInterval(fetchLeads, 10000);
-      }else{
-        toast('Login inválido','err');
-      }
+      if(r.ok){ loginBox.classList.add('hidden'); appBox.classList.remove('hidden'); loadLeads(); }
+      else alert('Login inválido');
     });
 
-    document.getElementById('btn-sair').addEventListener('click', async ()=>{
-      await fetch('/logout',{method:'POST'});
-      clearInterval(poller);
-      appBox.classList.add('hidden'); loginBox.classList.remove('hidden');
-    });
-
-    document.getElementById('btn-refresh').addEventListener('click', ()=> fetchLeads(false));
-
-    document.getElementById('btn-export').addEventListener('click', ()=>{
-      if(!ALL.length){ toast('Sem dados para exportar','err'); return; }
-      const blob = new Blob([csv(ALL)], {type:'text/csv;charset=utf-8;'});
-      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'leads.csv'; a.click();
-    });
-
-    [q,fTipo,fStatus,sortSel].forEach(el=> el.addEventListener('input', applyFilters));
+    document.getElementById('btn-sair').addEventListener('click', async ()=>{ await fetch('/logout',{method:'POST'}); appBox.classList.add('hidden'); loginBox.classList.remove('hidden'); });
 
     document.addEventListener('change', async e=>{
       if(e.target.classList.contains('status')){
-        const id = e.target.dataset.id, status = e.target.value;
-        const r = await fetch('/api/leads/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});
-        if(r.ok){ const row = ALL.find(x=>x.id==id); if(row){ row.status = status; applyFilters(); } toast('Status atualizado'); }
-        else toast('Erro ao atualizar','err');
+        const id = e.target.dataset.id;
+        const status = e.target.value;
+        await fetch('/api/leads/'+id,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});
       }
     });
 
-    // tenta carregar se já há sessão (ler pode funcionar mesmo sem login)
-    fetchLeads(false);
+    loadLeads();
   </script>
 </body>
 </html>
